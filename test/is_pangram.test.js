@@ -1,63 +1,56 @@
 const isPangram = require('../src/is_pangram');
 
 describe('isPangram()', () => {
-  test('isPangram() is defined', () => {
-    expect(isPangram).toBeDefined();
-  });
+    test('isPangram() is defined', () => {
+        expect(isPangram).toBeDefined();
+    });
 
-  test('works with a pangram with only lower case', () => {
-    // Arrange
-    const text = 'the quick brown fox jumps over the lazy dog';
+    test('works with a pangram with only lower case', () => {
+        const text = 'the quick brown fox jumps over the lazy dog';
+        const answer = isPangram(text);
+        expect(answer).toEqual(true);
 
-    // Act
+    });
 
-    // Assert
-  });
+    test('works with "abcdefghijklmnopqrstuvwxyz"', () => {
+        const text = "abcdefghijklmnopqrstuvwxyz";
+        const answer = isPangram(text);
+        expect(answer).toEqual(true);
 
-  test('works with "abcdefghijklmnopqrstuvwxyz"', () => {
-    // Arrange
+    });
 
-    // Act
+    test("missing character 'x'", () => {
+        const text = 'the quick brown foo jumps over the lazy dog';
+        const answer = isPangram(text);
+        expect(answer).toEqual(false);
 
-    // Assert
+    });
 
-  });
+    test('empty sentence', () => {
+        const text = '';
+        const answer = isPangram(text);
+        expect(answer).toEqual(false);
 
-  test("missing character 'x'", () => {
-    // Arrange
+    });
 
-    // Act
+    test('pangram with underscores instead of spaces works', () => {
+        const text = 'the_quick_brown_fox_jumps_over_the_lazy_dog';
+        const answer = isPangram(text);
+        expect(answer).toEqual(true);
 
-    // Assert
+    });
 
-  });
+    test('pangram with numbers', () => {
+        const text = 'the quick brown fox jumps 100 miles over the lazy dog';
+        const answer = isPangram(text);
+        expect(answer).toEqual(true);
 
-  test('empty sentence', () => {
-    // Arrange
+    });
 
-    // Act
+    test('returns true for alphabet twice', () => {
+        const text = 'abcdefghijklmnopqrstuvwxyz abcdefghijklmnopqrstuvwxyz';
+        const answer = isPangram(text);
+        expect(answer).toEqual(true);
 
-    // Assert
-
-  });
-
-  test('pangram with underscores instead of spaces works', () => {
-    // Arrange
-
-    // Act
-
-    // Assert
-
-  });
-
-  test('pangram with numbers', () => {
-    // Arrange
-
-    // Act
-
-    // Assert
-
-  });
-
-  // Write your own test case
+    });
 });
